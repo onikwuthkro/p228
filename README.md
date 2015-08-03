@@ -12,7 +12,7 @@ P228 is a one-file script, just save it as a .lua file and put it in your *autor
 You don't have to change `xxxxx` to your USGN if you are hosting the server locally.
 
 ## Documentation
-There is a few settings you may set. 
+There is a few settings you may set.  
 `p228_allweapon = true` - True for administrating with all weapons, otherwise you can only administrate the server with specified weapon.  
 `p228_weapon = 4` - `4` is the id of the weapon needed to administrate the server. 4 is p228, you may change it to whatever you like, for example, you may change it to laser(id is 45).  
 `p228_admin = {xxxxx}` - `xxxxx` is your USGN. If you have got multiple administrators, use `,` to separate the USGN IDs. For example, `p228_admin = {131785, 22801}` will work, but `p228_admin = {131785 22801}` will not work.  
