@@ -1,6 +1,6 @@
 p228_allweapon = true
 if not p228_allweapon then p228_weapon = 4 end
-p228_admin = {131785}
+p228_admin = {xxxxx}
 p228_using = {}
 p228_isadm = {}
 p228_number = {}
