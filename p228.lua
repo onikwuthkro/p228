@@ -45,11 +45,17 @@ function _spawn(p)
 	if p228_isadm[p] and p228_giveonspawn and not p228_allweapon then parse("equip "..p.." "..p228_weapon) end
 end
 
+function p228_auth(p)
+	if not p228_isadm[p] then
+		p228_using[p], p228_isadm[p], p228_number[p] = false, true, 1 parse("hudtxt2 "..p..' 1 "\169255000000Disabled administration" 9 424 0') parse ('hudtxt2 '..p..' 0 \"P228: '..p228_cmdlist[p228_number[p]][2]..'\" 260 424 0')
+	end
+end
+
 function _onj(p)
 	for _, usgn in ipairs(p228_admin) do
-		if player(p, "usgn") == usgn then p228_using[p], p228_isadm[p], p228_number[p] = false, true, 1 parse("hudtxt2 "..p..' 1 "\169255000000Disabled administration" 9 424 0') parse ('hudtxt2 '..p..' 0 \"P228: '..p228_cmdlist[p228_number[p]][2]..'\" 260 424 0') end
+		if player(p, "usgn") == usgn then p228_auth(p) end
 	end
-	if player(p, "ip") == "0.0.0.0" then p228_using[p], p228_isadm[p], p228_number[p] = false, true, 1 parse("hudtxt2 "..p..' 1 "\169255000000Disabled administration" 9 424 0') parse ('hudtxt2 '..p..' 0 \"P228: '..p228_cmdlist[p228_number[p]][2]..'\" 260 424 0') end
+	if player(p, "ip") == "0.0.0.0" then p228_auth(p) end
 end
 
 function _onhit(v, p, wpn)
