@@ -12,7 +12,7 @@ P228 is a one-file script, just save it as a *.lua file and put it in your *auto
 You don't have to change `xxxxx` to your USGN if you are hosting the server locally.
 
 ## Documentation
-There is a few settings you may set.  
+There is a few settings you may set. 
 `p228_allweapon = true` - True for administrating with all weapons, otherwise you can only administrate the server with specified weapon.  
 `p228_weapon = 4` - `4` is the id of the weapon needed to administrate the server. 4 is p228, you may change it to whatever you like, for example, you may change it to laser(id is 45).  
 `p228_admin = {xxxxx}` - `xxxxx` is your USGN. If you have got multiple administrators, use `,` to separate the USGN IDs. For example, `p228_admin = {131785, 22801}` will work, but `p228_admin = {131785 22801}` will not work.  
@@ -37,14 +37,14 @@ It has 12 functions currently, including:
 - getinfo
 
 #### How to use?
-After installing the script, simply start(or restart) the server. You will see two hudtexts on your hud. The left one indicates whether administration is enabled, and the other one indicates which function you are currently using. Press F2 on your keyboard to enable/disable administration, press F3 to change functions.
+After installing the script, simply start(or restart) the server. You will see two hudtexts on your hud. The left one indicates whether administration is enabled, and the other one indicates which function you are currently using. Press F2 on your keyboard to enable/disable administration, press F3 to change functions. 
 ![](http://i.imgbox.com/9MbjWgRF.jpg)
 
-#### Why I cannot get players' ranks by getinfo?
+#### Why I cannot get players' ranks by *getinfo*?
 Ranks are only shown when the players are logged in to USGN, ask them to login to USGN. To force them to login to USGN, simply enable **Registered U.S.G.N users only** in New Game menu.
 
 #### Why I dealt zero damage when I shoot enemies?
-Check if you enabled administration. When administration is enabled, you will not deal damage with any shots.
+Check if you enabled administration. When administration is enabled, you will not deal damage with any shots with the administrating weapon.
 
 ## Contribution
 If you have got new functions for the script, you are welcomed to commit changes to the script. Send pull requests and I will review them.
