@@ -54,5 +54,4 @@ This script is released under [Creative Commons 4.0 BY-SA](https://creativecommo
 You may edit and redistribute it as long as you don't violate the commons.
 
 Script by Yuki Usagi(USGN: 131785)  
-Website: [blog.yuki.ga](blog.yuki.ga)  
 E-mail: [karst124@gmail.com](mailto:karst124@gmail.com)
