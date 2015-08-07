@@ -7,7 +7,7 @@ P228 Administration Script(p228) is an idea originally presented by [**Sneak Eat
 The latest version can be downloaded [here](https://github.com/yukiusagi/p228/archive/master.zip).
 
 ## Installation
-P228 is a one-file script, just save it as a .lua file and put it in your *autorun* folder. Easy. To make yourself administration, open p228.lua and find the line `p228_admin = {xxxxx}`. Change `xxxxx` to your USGN and it's done.  
+P228 is a one-file script, just save it as a .lua file and put it in your *autorun* folder. Easy. To make yourself administrator, open p228.lua and find the line `p228_admin = {xxxxx}`. Change `xxxxx` to your USGN and it's done.  
 **Reminder**  
 You don't have to change `xxxxx` to your USGN if you are hosting the server locally.
 
