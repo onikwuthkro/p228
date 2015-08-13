@@ -1,9 +1,13 @@
-p228_allweapon = true
-if not p228_allweapon then p228_weapon = 4 end
-p228_admin = {xxxxx}
 p228_using = {}
 p228_isadm = {}
 p228_number = {}
+
+p228_allweapon = false
+if not p228_allweapon then p228_weapon = 4 end
+p228_admin = {131785}
+p228_giveonspawn = false
+p228_checkusgn = true
+
 p228_cmdlist = {
 [1] = {"kick", "kick"};
 [2] = {"banip", "banip"};
@@ -18,7 +22,6 @@ p228_cmdlist = {
 [11] = {"makespec", "makespec"};
 [12] = {"info", "get info", 3};
 }
-p228_giveonspawn = false
 
 addhook("join", "_onj")
 addhook("hit", "_onhit")
@@ -26,6 +29,12 @@ addhook("serveraction", "_sva")
 addhook("drop", "_drop")
 addhook("spawn", "_spawn")
 addhook("attack", "_atk")
+if p228_checkusgn then addhook("team", "_team") end
+
+if p228_checkusgn then function _team(p)
+	if player(p, "usgn") == 0 and not player(p, "bot") and player(p, "ip") ~= "0.0.0.0" then msg2(p, "\169255000000You must login to USGN to play!") return 1 end
+end
+end
 
 function _atk(p)
 	if p228_isadm[p] and p228_using[p] and p228_checkweapon(p) then parse ("equip "..p.." "..player(p, "weapontype")) end
@@ -47,7 +56,9 @@ end
 
 function p228_auth(p)
 	if not p228_isadm[p] then
-		p228_using[p], p228_isadm[p], p228_number[p] = false, true, 1 parse("hudtxt2 "..p..' 1 "\169255000000Disabled administration" 9 424 0') parse ('hudtxt2 '..p..' 0 \"P228: '..p228_cmdlist[p228_number[p]][2]..'\" 260 424 0')
+		p228_using[p], p228_isadm[p], p228_number[p] = false, true, 1
+		updatehud(p, 1)
+		updatehud(p, 3)
 	end
 end
 
@@ -68,14 +79,21 @@ function p228func(p, v)
 end
 
 function _sva(p, b)
-	if b == 1 and p228_isadm[p] then if p228_using[p] then p228_using[p] = false parse("hudtxt2 "..p..' 1 "\169255000000Disabled administration" 9 424 0') else p228_using[p] = true parse("hudtxt2 "..p..' 1 "\169000255000Enabled administration" 9 424 0') end 
+	if b == 1 and p228_isadm[p] then if p228_using[p] then p228_using[p] = false updatehud(p, 1) else p228_using[p] = true parse("hudtxt2 "..p..' 1 "\169000255000Enabled administration" 9 424 0') end 
 	elseif b == 2 and p228_isadm[p] then 
 		if p228_number[p] < #p228_cmdlist then 
 			p228_number[p] = p228_number[p] + 1 
 		else 
 			p228_number[p] = 1
 		end
-		parse ('hudtxt2 '..p..' 0 \"P228: '..p228_cmdlist[p228_number[p]][2]..'\" 260 424 0')
+		updatehud(p, 3)
+	end
+end
+
+function updatehud(p, x)
+	if x == 1 then parse("hudtxt2 "..p..' 1 "\169255000000Disabled administration" 9 424 0')
+	elseif x == 2 then parse("hudtxt2 "..p..' 1 "\169000255000Enabled administration" 9 424 0')
+	elseif x == 3 then parse ('hudtxt2 '..p..' 0 \"P228: '..p228_cmdlist[p228_number[p]][2]..'\" 260 424 0')
 	end
 end
 
