@@ -2,25 +2,17 @@ p228_using = {}
 p228_isadm = {}
 p228_number = {}
 
-p228_allweapon = false
-if not p228_allweapon then p228_weapon = 4 end
+p228_weapon = 4
 p228_admin = {131785}
 p228_giveonspawn = false
-p228_checkusgn = true
 
 p228_cmdlist = {
 [1] = {"kick", "kick"};
 [2] = {"banip", "banip"};
-[3] = {"strip", "strip", 4};
-[4] = {"speedmod", "freeze", 1, "-100"};
-[5] = {"speedmod", "unfreeze", 1, "0"};
-[6] = {"setname", "rename"};
-[7] = {"setpos", "catch", 2};
-[8] = {"killplayer", "kill"};
-[9] = {"maket", "maket"};
-[10] = {"makect", "makect"};
-[11] = {"makespec", "makespec"};
-[12] = {"info", "get info", 3};
+[3] = {"speedmod", "freeze", 1, "-100"};
+[4] = {"speedmod", "unfreeze", 1, "0"};
+[5] = {"setname", "rename"};
+[6] = {"info", "get info", 2};
 }
 
 addhook("join", "_onj")
@@ -29,29 +21,19 @@ addhook("serveraction", "_sva")
 addhook("drop", "_drop")
 addhook("spawn", "_spawn")
 addhook("attack", "_atk")
-if p228_checkusgn then addhook("team", "_team") end
-
-if p228_checkusgn then function _team(p)
-	if player(p, "usgn") == 0 and not player(p, "bot") and player(p, "ip") ~= "0.0.0.0" then msg2(p, "\169255000000You must login to USGN to play!") return 1 end
-end
-end
 
 function _atk(p)
 	if p228_isadm[p] and p228_using[p] and p228_checkweapon(p) then parse ("equip "..p.." "..player(p, "weapontype")) end
 end
 
 function p228_checkweapon(p)
-	if not p228_allweapon then 
-		if player(p, "weapontype") == p228_weapon then 
-			return true
-		end
-	else
+	if player(p, "weapontype") == p228_weapon then 
 		return true
 	end
 end
 
 function _spawn(p)
-	if p228_isadm[p] and p228_giveonspawn and not p228_allweapon then parse("equip "..p.." "..p228_weapon) end
+	if p228_isadm[p] and p228_giveonspawn then parse("equip "..p.." "..p228_weapon) end
 end
 
 function p228_auth(p)
@@ -70,7 +52,7 @@ function _onj(p)
 end
 
 function _onhit(v, p, wpn)
-	if p228_isadm[p] then if not p228_allweapon then if wpn == p228_weapon and p228_using[p] then p228func(p, v) return 1 end elseif p228_using[p] then p228func(p, v) return 1 end end
+	if p228_isadm[p] then if wpn == p228_weapon and p228_using[p] then p228func(p, v) return 1 end end
 end
 
 function p228func(p, v)
@@ -117,7 +99,5 @@ end
 
 function p228extrafunc(p, v, r)
 	if r == 1 then parse(p228_cmdlist[p228_number[p]][1].." "..v.." "..p228_cmdlist[p228_number[p]][4])
-	elseif r == 2 then parse(p228_cmdlist[p228_number[p]][1]..' '..v.." "..player(p, "x").." "..player(p, "y"))
-	elseif r == 3 then getinfo(p, v) 
-	elseif r == 4 then parse ("strip "..v.." 0") end
+	elseif r == 2 then getinfo(p, v) end
 end

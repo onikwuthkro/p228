@@ -23,7 +23,7 @@ There is a few settings you may set.
 Well, read the part ***Installation*** above.
 
 #### How many functions does this script have?
-It has 12 functions currently, including:  
+It has 12 functions currently in the full version, including:  
 - kick  
 - banip  
 - strip  
@@ -36,6 +36,13 @@ It has 12 functions currently, including:
 - makespec  
 - getinfo
 
+The lite version has cut a few functions and retains the following:
+- kick
+- banip
+- freeze and unfreeze
+- rename
+- getinfo
+
 #### How to use?
 After installing the script, simply start(or restart) the server. You will see two hudtexts on your hud. The left one indicates whether administration is enabled, and the other one indicates which function you are currently using. Press F2 on your keyboard to enable/disable administration, press F3 to change functions. 
 ![](http://i.imgbox.com/9MbjWgRF.jpg)
@@ -45,6 +52,12 @@ Ranks are only shown when the players are logged in to USGN, ask them to login t
 
 #### Why I dealt zero damage when I shoot enemies?
 Check if you enabled administration. When administration is enabled, you will not deal damage with any shots with the administrating weapon.
+
+#### Differences between the full version and the lite version?
+The lite version contains only frequently used functions, and discarded less used functions. Also, to minimize the script, *allweapon* is removed; Plus the *checkusgn* feature is removed, too. Despite these changes the scripts has no difference at all.
+
+#### So which one is better?
+Get the full version if you want the whole code/fully functional script. Get the lite version if you want only frequently used administrative functions.
 
 ## Contribution
 If you have got new functions for the script, you are welcomed to commit changes to the script. Send pull requests and I will review them.
