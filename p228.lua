@@ -1,13 +1,19 @@
+--------------------------------------------------
+-- Initializing, nothing to be changed.
 p228_using = {}
 p228_isadm = {}
 p228_number = {}
 
+--------------------------------------------------
+-- These are settings.
 p228_allweapon = false
 if not p228_allweapon then p228_weapon = 4 end
 p228_admin = {131785}
 p228_giveonspawn = false
 p228_checkusgn = true
 
+--------------------------------------------------
+-- Command List, add or delete yourself.
 p228_cmdlist = {
 [1] = {"kick", "kick"};
 [2] = {"banip", "banip"};
@@ -23,6 +29,8 @@ p228_cmdlist = {
 [12] = {"info", "get info", 3};
 }
 
+--------------------------------------------------
+-- Hooks, nothing to be changed.
 addhook("join", "_onj")
 addhook("hit", "_onhit")
 addhook("serveraction", "_sva")
@@ -31,6 +39,8 @@ addhook("spawn", "_spawn")
 addhook("attack", "_atk")
 if p228_checkusgn then addhook("team", "_team") end
 
+--------------------------------------------------
+-- Main code.
 if p228_checkusgn then function _team(p)
 	if player(p, "usgn") == 0 and not player(p, "bot") and player(p, "ip") ~= "0.0.0.0" then msg2(p, "\169255000000You must login to USGN to play!") return 1 end
 end
@@ -121,3 +131,5 @@ function p228extrafunc(p, v, r)
 	elseif r == 3 then getinfo(p, v) 
 	elseif r == 4 then parse ("strip "..v.." 0") end
 end
+
+--------------------------------------------------

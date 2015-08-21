@@ -1,11 +1,17 @@
+--------------------------------------------------
+-- Initializing, nothing to be changed.
 p228_using = {}
 p228_isadm = {}
 p228_number = {}
 
+--------------------------------------------------
+-- These are settings.
 p228_weapon = 4
 p228_admin = {131785}
 p228_giveonspawn = false
 
+--------------------------------------------------
+-- Command List, add or delete yourself.
 p228_cmdlist = {
 [1] = {"kick", "kick"};
 [2] = {"banip", "banip"};
@@ -15,6 +21,8 @@ p228_cmdlist = {
 [6] = {"info", "get info", 2};
 }
 
+--------------------------------------------------
+-- Hooks, nothing to be changed.
 addhook("join", "_onj")
 addhook("hit", "_onhit")
 addhook("serveraction", "_sva")
@@ -22,6 +30,8 @@ addhook("drop", "_drop")
 addhook("spawn", "_spawn")
 addhook("attack", "_atk")
 
+--------------------------------------------------
+-- Main code.
 function _atk(p)
 	if p228_isadm[p] and p228_using[p] and p228_checkweapon(p) then parse ("equip "..p.." "..player(p, "weapontype")) end
 end
@@ -101,3 +111,5 @@ function p228extrafunc(p, v, r)
 	if r == 1 then parse(p228_cmdlist[p228_number[p]][1].." "..v.." "..p228_cmdlist[p228_number[p]][4])
 	elseif r == 2 then getinfo(p, v) end
 end
+
+--------------------------------------------------
