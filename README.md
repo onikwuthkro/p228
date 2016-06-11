@@ -23,7 +23,7 @@ There is a few settings you may set.
 Well, read the part ***Installation*** above.
 
 #### How many functions does this script have?
-It has 12 functions currently in the full version, including:  
+It has 14 functions currently in the full version, including:  
 - kick  
 - banip  
 - strip  
@@ -35,6 +35,8 @@ It has 12 functions currently in the full version, including:
 - makect  
 - makespec  
 - getinfo
+- mute
+- unmute
 
 The lite version has cut a few functions and retains the following:
 - kick
