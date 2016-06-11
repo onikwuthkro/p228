@@ -80,6 +80,13 @@ function _sva(p, b)
 			updatehud(p, 2)
 		end
 	elseif b == 2 and p228_isadm[p] then 
+		if p228_number[p] > 1 then 
+			p228_number[p] = p228_number[p] - 1 
+		else 
+			p228_number[p] = #p228_cmdlist
+		end
+		updatehud(p, 3)
+	elseif b == 3 and p228_isadm[p] then 
 		if p228_number[p] < #p228_cmdlist then 
 			p228_number[p] = p228_number[p] + 1 
 		else 
