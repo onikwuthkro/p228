@@ -3,6 +3,7 @@
 p228_using = {}
 p228_isadm = {}
 p228_number = {}
+player_muted = {}
 
 --------------------------------------------------
 -- These are settings.
@@ -27,6 +28,8 @@ p228_cmdlist = {
 [10] = {"makect", "makect"};
 [11] = {"makespec", "makespec"};
 [12] = {"info", "get info", 3};
+[13] = {"mute", "mute", 5};
+[14] = {"unmute", "unmute", 6};
 }
 
 --------------------------------------------------
@@ -37,6 +40,7 @@ addhook("serveraction", "_sva")
 addhook("drop", "_drop")
 addhook("spawn", "_spawn")
 addhook("attack", "_atk")
+addhook("say", "_say")
 if p228_checkusgn then addhook("team", "_team") end
 
 --------------------------------------------------
@@ -77,6 +81,7 @@ function _onj(p)
 		if player(p, "usgn") == usgn then p228_auth(p) end
 	end
 	if player(p, "ip") == "0.0.0.0" then p228_auth(p) end
+	player_muted[p] = 0
 end
 
 function _onhit(v, p, wpn)
@@ -98,6 +103,13 @@ function _sva(p, b)
 			updatehud(p, 2)
 		end
 	elseif b == 2 and p228_isadm[p] then 
+		if p228_number[p] > 1 then 
+			p228_number[p] = p228_number[p] - 1 
+		else 
+			p228_number[p] = #p228_cmdlist
+		end
+		updatehud(p, 3)
+	elseif b == 3 and p228_isadm[p] then 
 		if p228_number[p] < #p228_cmdlist then 
 			p228_number[p] = p228_number[p] + 1 
 		else 
@@ -118,6 +130,10 @@ function _drop(p, i, t)
 	if not p228_allweapon and t == p228_weapon and p228_using[p] then return 0 end
 end
 
+function _say(p)
+	if player_muted[p] ==1 then msg2(p, "\169255000000You are muted!") return 1 end
+end
+
 function getinfo(p, v)
 	msg2(p, "\169169169169Name: "..player(v, "name"))
 	msg2(p, "\169169169169USGN: "..player(v, "usgn"))
@@ -129,7 +145,9 @@ function p228extrafunc(p, v, r)
 	if r == 1 then parse(p228_cmdlist[p228_number[p]][1].." "..v.." "..p228_cmdlist[p228_number[p]][4])
 	elseif r == 2 then parse(p228_cmdlist[p228_number[p]][1]..' '..v.." "..player(p, "x").." "..player(p, "y"))
 	elseif r == 3 then getinfo(p, v) 
-	elseif r == 4 then parse ("strip "..v.." 0") end
+	elseif r == 4 then parse ("strip "..v.." 0")
+	elseif r == 5 then player_muted[v] = 1
+	elseif r == 6 then player_muted[v] = 0 end
 end
 
 --------------------------------------------------
